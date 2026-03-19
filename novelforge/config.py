@@ -1,15 +1,14 @@
 """
 Configuration for NovelForge
 """
-import os
 
 
 class Config:
-    """LLM 配置"""
+    """LLM 配置 - 在这里修改你的API Key"""
     
-    # 上海交大 LLM API（默认）
-    LLM_API_KEY = os.environ.get("OPENAI_API_KEY", "")
-    LLM_BASE_URL = os.environ.get("OPENAI_API_BASE", "https://models.sjtu.edu.cn/api/v1")
+    # ===== 在这里填入你的 API Key =====
+    LLM_API_KEY = "sk-QYzK5ftS5P5GktkgfY98Zg"  # 替换成你的key
+    LLM_BASE_URL = "https://models.sjtu.edu.cn/api/v1"  # API地址
     LLM_MODEL = "minimax-m2.5"
     LLM_TEMPERATURE = 0.8
     LLM_MAX_TOKENS = 4000
