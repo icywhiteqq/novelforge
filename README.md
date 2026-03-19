@@ -1,100 +1,120 @@
 # 🖊️ NovelForge
 
-AI-Powered Long-Form Novel Writing with Autonomous Characters
+> 用 AI 写长篇小说，每个角色都是有灵魂的 Agent
 
-NovelForge is an innovative framework for writing long novels with AI agents. Each character is an autonomous agent with their own soul, memory, and goals. The system solves the core problems of AI novel writing:
+你是否曾被 AI 写小说时的"失忆"问题困扰？写到后面忘前面，角色性格前后矛盾，伏笔埋了等于没埋？
 
-- 🔮 **Long-term Memory** — Characters remember everything, even chapters later
-- 🎯 **Foreshadowing & Payoff** — Built-in plot threading for callbacks
-- 🎭 **Autonomous Characters** — Each character is an agent with distinct personality
-- 📖 **Consistent World** — World state management across chapters
+**NovelForge 就是来解决这些问题的。**
 
-## ✨ Features
+## 🎯 解决痛点
 
-- **Character Agents** — Each character is an autonomous AI agent with their own SOUL (Personality, Goals, Memories)
-- **Memory System** — Powered by AgentScope, with vector storage for semantic search
-- **Plot Threading** — Track foreshadowing and ensure callbacks
-- **World State** — Consistent world-building across the entire novel
-- **Chapter Planning** — AI-assisted plot outline generation
-- **Multi-Agent Collaboration** — Characters interact and influence each other
+- ❌ 写了后面忘前面，AI 总是丢失上下文
+- ❌ 角色写着写着就变味儿了，人设崩塌
+- ❌ 埋下的伏笔后来完全忘记回收
+- ❌ 世界观设定前后矛盾
 
-## 🏗️ Architecture
+## ✨ 核心特性
+
+| 特性 | 说明 |
+|------|------|
+| 🧠 **长期记忆** | 角色记得所有章节发生的事情，不会"失忆" |
+| 🎭 **角色灵魂** | 每个角色都有独立的 SOUL（性格、目标、秘密） |
+| 🎯 **伏笔管理** | 自动追踪所有伏笔，适时提醒回收 |
+| 🌍 **世界状态** | 统一管理世界观，确保设定一致 |
+| 📖 **长篇支持** | 专为百万字级别长篇小说设计 |
+
+## 🏗️ 架构一览
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      NovelForge                             │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────────┐  ┌─────────────────┐                  │
-│  │  World Manager  │  │  Plot Manager   │                  │
-│  │  (世界设定)      │  │  (情节规划+伏笔)  │                  │
-│  └─────────────────┘  └─────────────────┘                  │
-│                                                             │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │              Memory System (AgentScope)             │   │
-│  │  - Character Memories    - Plot Threads             │   │
-│  │  - World State           - Chapter History          │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │
-│  │ Character│ │ Character│ │ Character│ │ Character│      │
-│  │  Agent   │ │  Agent   │ │  Agent   │ │  Agent   │      │
-│  │ (主角A)  │ │ (主角B)  │ │ (反派)   │ │ (配角)   │      │
-│  │  SOUL    │ │  SOUL    │ │  SOUL    │ │  SOUL    │      │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘      │
-│                         ↓                                   │
-│              ┌──────────────────┐                          │
-│              │  Narrative Agent │                          │
-│              │   (叙事润色)       │                          │
-│              └──────────────────┘                          │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────┐
+│                   NovelForge                    │
+├─────────────────────────────────────────────────┤
+│  ┌──────────────┐   ┌────────────────────┐    │
+│  │  世界管理器   │   │    伏笔管理器       │    │
+│  └──────────────┘   └────────────────────┘    │
+│                                                 │
+│  ┌────────────────────────────────────────┐   │
+│  │          记忆系统 (AgentScope)          │   │
+│  │  角色记忆 · 伏笔线索 · 世界设定          │   │
+│  └────────────────────────────────────────┘   │
+│                                                 │
+│  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐             │
+│  │主角 │ │女主 │ │反派 │ │配角 │             │
+│  │Agent│ │Agent│ │Agent│ │Agent│             │
+│  └─────┘ └─────┘ └─────┘ └─────┘             │
+└─────────────────────────────────────────────────┘
 ```
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
 ```python
 from novelforge import Novel, Character
 
-# Create a novel
+# 创建小说
 novel = Novel(
-    title="我的小说",
+    title="我的仙侠小说",
     genre="奇幻",
-    world_settings={"魔法体系": "五行元素", "世界观": "仙侠世界"}
+    world_settings={"灵气体系": "五行", "境界": "炼气→化神"}
 )
 
-# Create characters with SOUL
-protagonist = Character(
+# 创建有灵魂的角色
+主角 = Character(
     name="李云",
     role="主角",
     soul={
-        "personality": "沉稳内敛，但关键时刻果断",
-        "goals": "拯救宗门，找出灭门真相",
+        "personality": "沉稳内敛，关键时刻果断",
+        "goals": ["找出灭门真相", "拯救宗门"],
         "secrets": "体内藏有上古血脉"
     }
 )
-novel.add_character(protagonist)
+novel.add_character(主角)
 
-# Generate a chapter
+# 生成章节（需要配置 LLM）
 chapter = novel.write_chapter(
     title="第一章：下山",
-    plot_points=["李云初次下山", "遭遇神秘少女", "发现仇家线索"]
+    plot_points=["初入江湖", "偶遇女主", "发现线索"],
+    use_llm=True
 )
-print(chapter)
+print(chapter.content)
 ```
 
-## 📖 Documentation
+## 📦 安装
 
-Full documentation coming soon. For now, check the examples in `examples/`.
+```bash
+pip install novelforge
+```
 
-## 🤝 Contributing
+## ⚙️ 配置 LLM
 
-Contributions welcome! Please read our Contributing Guide.
+NovelForge 支持任意 OpenAI 兼容的 API：
 
-## 📝 License
+```python
+import os
+os.environ["OPENAI_API_KEY"] = "your-key"
+os.environ["OPENAI_API_BASE"] = "https://api.openai.com/v1"
+# 或使用其他兼容 API
+```
 
-MIT License.
+## 📖 示例
+
+```bash
+# 运行科幻小说示例
+python examples/scifi_novel.py
+
+# 运行基础演示
+python examples/demo.py
+```
+
+## 🤝 贡献
+
+欢迎 Star！欢迎 Fork！欢迎 PR！
+
+## 📝 许可证
+
+MIT License
 
 ---
 
 <p align="center">
-  Made with ❤️ by NovelForge Team
+Made with ❤️ by NovelForge Team
 </p>
