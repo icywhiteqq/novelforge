@@ -372,19 +372,25 @@ class Novel:
 {plot_detail}
 
 【写作要求】
-1. 每个情节点要展开成500-1000字的详细描写
-2. 对话要符合角色性格
-3. 要有场景描写和心理描写
-4. 情节要连贯，有代入感
-5. 字数要求：至少1500字
-6. 必须输出完整的小说正文，不能只是大纲
+1. **字数要求：每个情节点必须展开800字以上**
+2. 对话要符合角色性格，每句话都要有性格特征
+3. **动作/打斗场面要像电影分镜一样详细**：
+   - 每个招式都要有起手、过程、结果
+   - 要描写角色的表情、眼神、气息变化
+   - 要有环境互动（地面尘土、空气震动、物品碎裂等）
+   - 要有时间感（瞬间/几个呼吸/盏茶功夫）
+4. 场景描写要细致（视觉、听觉、嗅觉、触觉）
+5. 心理描写要有层次（紧张、恐惧、惊讶、决心等）
+6. 情节要连贯，有画面感，有代入感
+7. **本章总字数必须达到2000-3000字**
+8. 必须输出完整的小说正文，不能只是大纲
 
-请开始创作正文："""
+请开始创作（直接输出小说正文，不要输出其他内容）："""
         # 调用 LLM
         return self._call_llm(prompt)
     
     def _call_llm(self, prompt: str) -> str:
-        """调用LLM API"""
+        """调用LLM API，失败则返回prompt让人工生成"""
         from .llm_client import llm_client
         import time
         
@@ -394,7 +400,8 @@ class Novel:
                 return llm_client.call(prompt)
             except Exception as e:
                 if attempt == 2:
-                    return f"[LLM调用失败: {e}]\n\n请检查API配置。"
+                    # API失败时返回prompt，让人类/其他LLM填充
+                    return f"[API调用失败: {e}]\n\n=== 以下是生成请求，请帮我创作 ===\n{prompt}"
                 time.sleep(2)
     
     def _generate_demo(self, chapter: Chapter) -> str:
