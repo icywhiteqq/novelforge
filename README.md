@@ -1,4 +1,4 @@
-# 🖊️ NovelForge
+# 🖊️ NovelMind
 
 用 AI 写长篇小说，让每个角色都是有灵魂的 Agent。
 
