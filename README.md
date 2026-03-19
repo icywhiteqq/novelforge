@@ -1,8 +1,8 @@
 # 🖊️ NovelForge
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/novelforge-team/novelforge?style=flat&color=ff6b6b" alt="stars">
-  <img src="https://img.shields.io/github/license/novelforge-team/novelforge" alt="license">
+  <img src="https://img.shields.io/github/stars/icywhiteqq/novelforge?style=flat&color=ff6b6b" alt="stars">
+  <img src="https://img.shields.io/github/license/icywhiteqq/novelforge" alt="license">
   <img src="https://img.shields.io/python-version/novelforge?logo=python" alt="python">
 </p>
 
