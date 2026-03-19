@@ -46,11 +46,11 @@ class LLMClient:
             "max_tokens": max_tokens or self.max_tokens
         }
         
-        # 重试3次
+        # 重试3次，超时改为120秒
         for attempt in range(3):
             try:
                 log.info(f"Calling LLM API: model={self.model}, attempt {attempt+1}")
-                r = requests.post(url, headers=headers, json=data, timeout=60)
+                r = requests.post(url, headers=headers, json=data, timeout=120)
                 r.raise_for_status()
                 result = r.json()
                 content = result["choices"][0]["message"]["content"]
@@ -59,7 +59,7 @@ class LLMClient:
             except Exception as e:
                 log.warning(f"LLM API call failed: {e}, attempt {attempt+1}/3")
                 if attempt < 2:
-                    time.sleep(2)
+                    time.sleep(3)
                 else:
                     raise
     
