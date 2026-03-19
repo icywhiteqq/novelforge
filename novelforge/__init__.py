@@ -11,6 +11,8 @@ from .character import Character, CharacterAgent, Soul
 from .memory import Memory, MemoryType, MemoryStore, CharacterMemoryPool
 from .plot import PlotThread, PlotManager, PlotType, PlotStatus
 from .style import StyleProfile, StyleAnalyzer, StyleConsistencyChecker, PresetStyles
+from .llm_client import LLMClient, llm_client
+from .config import Config
 
 __all__ = [
     # Novel
@@ -37,4 +39,8 @@ __all__ = [
     "StyleAnalyzer",
     "StyleConsistencyChecker",
     "PresetStyles",
+    # LLM
+    "LLMClient",
+    "llm_client",
+    "Config",
 ]

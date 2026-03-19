@@ -366,32 +366,14 @@ class Novel:
         return self._call_llm(prompt)
     
     def _call_llm(self, prompt: str) -> str:
-        """调用LLM API，支持重试"""
-        import os
+        """调用LLM API"""
+        from .llm_client import llm_client
         import time
-        import requests
-        
-        api_base = os.environ.get("OPENAI_API_BASE", "https://models.sjtu.edu.cn/api/v1")
-        api_key = os.environ.get("OPENAI_API_KEY", "")
-        
-        url = f"{api_base}/chat/completions"
         
         # 重试3次
         for attempt in range(3):
             try:
-                headers = {
-                    "Authorization": f"Bearer {api_key}",
-                    "Content-Type": "application/json"
-                }
-                data = {
-                    "model": "minimax-m2.5",
-                    "messages": [{"role": "user", "content": prompt}],
-                    "max_tokens": 2000
-                }
-                
-                r = requests.post(url, headers=headers, json=data, timeout=300)
-                r.raise_for_status()
-                return r.json()["choices"][0]["message"]["content"]
+                return llm_client.call(prompt)
             except Exception as e:
                 if attempt == 2:
                     return f"[LLM调用失败: {e}]\n\n请检查API配置。"
